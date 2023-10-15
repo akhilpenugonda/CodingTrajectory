@@ -20,4 +20,3 @@ var isValid = function(str) {
     }
     return stack.length === 0;
 };
-
