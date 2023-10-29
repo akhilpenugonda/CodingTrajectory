@@ -19,3 +19,4 @@ var maxAscendingSum = function(nums) {
     }
     return maxSum;
 };
+//Comment 2
