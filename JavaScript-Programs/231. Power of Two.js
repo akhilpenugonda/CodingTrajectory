@@ -21,6 +21,7 @@ var isPowerOfTwo = function(n) {
         }
         n = n/2;
     }
+//Comment
     return true;
 };
 // var isPowerOfTwo = function(n) {
