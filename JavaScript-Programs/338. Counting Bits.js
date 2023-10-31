@@ -12,6 +12,7 @@ function countBits(n) {
     return ans;
 }
 
+
 /**
  * @param {number} n
  * @return {number[]}

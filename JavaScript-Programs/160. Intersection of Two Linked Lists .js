@@ -41,6 +41,7 @@ var getIntersectionNode = function(headA, headB) {
     return null;
 };
 
+
 // var getIntersectionNode = function(headA, headB) {
 //     let a = headA, b = headB
 //     while (a !== b) {
