@@ -17,4 +17,5 @@ var checkIfExist = function(arr) {
             p2 = p1 + 1;
         }
         return false;
+
     };
