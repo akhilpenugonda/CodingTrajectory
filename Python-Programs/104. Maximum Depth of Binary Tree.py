@@ -14,3 +14,4 @@ class Solution(object):
             return 0
         return max(self.maxDepth(root.left)+1, self.maxDepth(root.right)+1)
         
+
