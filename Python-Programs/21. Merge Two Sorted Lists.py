@@ -21,4 +21,21 @@ class Solution(object):
             current.next = list2
         return dummy.next
 
+def printList(list):
+    while(list is not None):
+        print(list.val, end=" ")
+        list = list.next
+    print()
+
+def mergeTwoSortedLinkedlists(list1, list2):
+    if(list1 is None):
+        return list2
+    elif(list2 is None):
+        return list1
+    elif(list1.val <= list2.val):
+        list1.next = mergeTwoSortedLinkedlists(list1.next, list2)
+        return list1
+    else:
+        list2.next = mergeTwoSortedLinkedlists(list1, list2.next)
+        return list2
         
