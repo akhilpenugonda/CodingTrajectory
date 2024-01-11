@@ -5,11 +5,15 @@ class Node(object):
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
-
 class Solution(object):
     def cloneGraph(self, node):
-        """
-        :type node: Node
-        :rtype: Node
-        """
-        
+        oldToNew = {}
+        def dfs (node):
+            if node in oldToNew:
+                return oldToNew[node]
+            oldToNew[node] = Node(node.val)
+            for neighbor in node.neighbors:
+                oldToNew[node].neighbors.append(dfs(neighbor))
+            return oldToNew[node]
+        return dfs(node) if node else None
+      
