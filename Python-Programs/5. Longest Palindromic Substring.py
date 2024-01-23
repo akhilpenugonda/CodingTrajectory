@@ -15,38 +15,38 @@ class Solution(object):
         #             res = s[i:j+1]
         # return res
         # 2. Expand Around Center
-        # if not s: return ""
-        # res = s
-        # for i in range(len(s)):
-        #     # odd case
-        #     l, r = i, i
-        #     while l >= 0 and r < len(s) and s[l] == s[r]:
-        #         l -= 1
-        #         r += 1
-        #     if r - l - 1 > len(res):
-        #         res = s[l+1:r]
-        #     # even case
-        #     l, r = i, i+1
-        #     while l >= 0 and r < len(s) and s[l] == s[r]:
-        #         l -= 1
-        #         r += 1
-        #     if r - l - 1 > len(res):
-        #         res = s[l+1:r]
-        # return res
-        # 3. Dynamic Programming
         if not s: return ""
-        res = s[0]
-        dp = [[False for _ in range(len(s))] for _ in range(len(s))]
+        res = ""
         for i in range(len(s)):
-            dp[i][i] = True
-        for i in range(len(s)-1, -1, -1):
-            for j in range(i+1, len(s)):
-                if s[i] == s[j]:
-                    if j - i < 3 or dp[i+1][j-1]:
-                        dp[i][j] = True
-                        if j - i + 1 > len(res):
-                            res = s[i:j+1]
+            # odd case
+            l, r = i, i
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            if r - l - 1 > len(res):
+                res = s[l+1:r]
+            # even case
+            l, r = i, i+1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            if r - l - 1 > len(res):
+                res = s[l+1:r]
         return res
+        # 3. Dynamic Programming
+        # if not s: return ""
+        # res = s[0]
+        # dp = [[False for _ in range(len(s))] for _ in range(len(s))]
+        # for i in range(len(s)):
+        #     dp[i][i] = True
+        # for i in range(len(s)-1, -1, -1):
+        #     for j in range(i+1, len(s)):
+        #         if s[i] == s[j]:
+        #             if j - i < 3 or dp[i+1][j-1]:
+        #                 dp[i][j] = True
+        #                 if j - i + 1 > len(res):
+        #                     res = s[i:j+1]
+        # return res
         # 4. Manacher's Algorithm
         # if not s: return ""
         # s = "#" + "#".join(s) + "#"
