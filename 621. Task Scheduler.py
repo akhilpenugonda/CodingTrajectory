@@ -5,27 +5,31 @@ class Solution(object):
         :type n: int
         :rtype: int
         """        
-        # build graph
-        graph = collections.defaultdict(set)
-        for i in range(len(tasks)):
-            graph[tasks[i]].add(i)
+        # With formula
+        # if not tasks:
+        #     return 0
         
-        # find leaves
-        leaves = []
-        for i in range(len(tasks)):
-            if len(graph[tasks[i]]) == 1:
-                leaves.append(i)
-        
-        # remove leaves level by level
-        while len(tasks) > 2:
-            lenTasks = len(tasks)
-            for leaf in leaves:
-                tasks.pop(leaf)
-                for key in graph.keys():
-                    if leaf in graph[key]:
-                        graph[key].remove(leaf)
-                if len(graph[tasks[leaf]]) == 1:
-                    leaves.append(leaf)
-            leaves = leaves[lenTasks:]
-        
-        return len(tasks)
+        # task_count = collections.Counter(tasks)
+        # max_count = max(task_count.values())
+        # max_task = len([v for v in task_count.values() if v == max_count])
+        # return max(len(tasks), (max_count - 1) * (n + 1) + max_task)
+
+        # Without formula using max heap and queue
+        if not tasks:
+            return 0
+        count = collections.Counter(tasks)
+        maxHeap = [-cnt for cnt in count.values()] # in python we have only minheap so we need to negate the values
+        # heap will be like [-3, -2, -2]
+        heapq.heapify(maxHeap)
+        time = 0
+        q = collections.deque() # stores [-cnt, idle time]
+        while maxHeap or q:
+            time += 1
+            if maxHeap:
+                cnt = 1 + heapq.heappop(maxHeap) # say we have -3 in top we take it and add 1 to it and push it into queue
+                if cnt:
+                    q.append([cnt, time+n])
+            if q and q[0][1] == time:
+                heapq.heappush(maxHeap, q.popleft()[0])
+            
+        return time
