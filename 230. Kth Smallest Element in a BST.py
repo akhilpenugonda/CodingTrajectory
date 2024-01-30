@@ -11,4 +11,20 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        # approach using stack
+        stack = []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            k -= 1
+            if k == 0:
+                return root.val
+            root = root.right
+        # approach using inorder traversal
+        # def inorder(r):
+        #     return inorder(r.left) + [r.val] + inorder(r.right) if r else []
+            
+
         
