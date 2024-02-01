@@ -28,17 +28,25 @@ class Codec:
         data = data.split(",")
         # print(data)
         
-        def helper(data):
-            if data[0] == "None":
-                data.pop(0)
+        # def helper(data):
+        #     if data[0] == "None":
+        #         data.pop(0)
+        #         return None
+        #     root = TreeNode(data[0])
+        #     data.pop(0)
+        #     root.left = helper(data)
+        #     root.right = helper(data)
+        #     return root
+        def helper(data, index):
+            if data[index[0]] == "None":
+                index[0] += 1
                 return None
-            root = TreeNode(data[0])
-            data.pop(0)
-            root.left = helper(data)
-            root.right = helper(data)
+            root = TreeNode(data[index[0]])
+            index[0] += 1
+            root.left = helper(data, index)
+            root.right = helper(data, index)
             return root
-        
-        return helper(data)
+        return helper(data, [0])
 
         
 
