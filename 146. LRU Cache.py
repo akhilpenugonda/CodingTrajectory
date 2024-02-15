@@ -16,6 +16,7 @@ class LRUCache:
         self.left.next = self.right
         self.right.prev = self.left
 
+
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
